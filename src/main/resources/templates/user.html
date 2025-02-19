@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <ul>
+        <!-- Iterate over the users list and display each user's details -->
+		<li th:each="u : ${userDetail}">
+			<ul>
+				<li><span th:text="${u.email}">Email</span></li>
+				<li><span th:text="${u.dob}">DOB</span></li>
+				<li><span th:text="${u.createdAt}">Created At</span></li>
+			</ul>
+		</li>
+	</ul>
+
+    <div class="button-container">
+        <a href="/" th:href="@{/}">Go to Home Page</a>
+    </div>
+</body>
+</html>

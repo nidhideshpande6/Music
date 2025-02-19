@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tracks</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #1abc9c, #16a085);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 90%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #ffffff;
+            color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #16a085;
+            color: #ffffff;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .button {
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #ffffff;
+            background: #3498db;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #2980b9;
+        }
+        .delete-button {
+            background: #e74c3c;
+        }
+        .delete-button:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Tracks</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="track : ${tracks}">
+                <tr>
+                    <td th:text="${track.title}">Title</td>
+                    <td th:text="${track.artist}">Artist</td>
+                    <td th:text="${track.genre}">Genre</td>
+                    <td class="actions">
+                        <a th:href="@{/tracks/{id}(id=${track.id})}" class="button">View</a>
+                        <a th:href="@{/tracks/edit/{id}(id=${track.id})}" class="button">Edit</a>
+
+                        <!-- Delete Button -->
+                        <form th:action="@{/tracks/delete/{id}(id=${track.id})}" method="post" 
+                              onsubmit="return confirm('Are you sure you want to delete this track?');">
+                            <button type="submit" class="button delete-button">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            text-align: justify; /* Justify the text alignment */
+        }
+        p span {
+            font-weight: bold;
+            color: #ffdd57;
+        }
+        .details-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            padding-top:10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        audio {
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+         .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: purple;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+        .button-container a:hover {
+            background: #1e3c72;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+        <h1>Track Details</h1>
+        <p>Title: <span th:text="${track.title}">Title</span></p>
+        <p>Artist: <span th:text="${track.artist}">Artist</span></p>
+        <p>Duration: <span th:text="${track.duration}">Duration</span> seconds</p>
+        <p>Genre: <span th:text="${track.genre}">Genre</span></p>
+        <p>Release Date: <span th:text="${track.releaseDate}">Release Date</span></p>
+        <p>Album: <span th:text="${track.album}">Album</span></p>
+        <p>Created At: <span th:text="${track.createdAt}">Created At</span></p>
+        <p>Updated At: <span th:text="${track.updatedAt}">Updated At</span></p>
+
+        <h2>Audio Player</h2>
+        <audio controls>
+            <source th:src="@{/tracks/audio/{id}(id=${track.id})}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <div class="button-container">
+            <a href="/" th:href="@{/}">Home</a>  
+            <a href="/tracks/all" th:href="@{/tracks/all}">Tracks List</a>
+        </div>
+        </div>
+        <footer>
+            <p>Track details powered by Music Library</p>
+        </footer>
+    
+</body>
+</html>

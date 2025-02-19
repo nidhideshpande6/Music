@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #2c3e50, #3498db);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow-y: auto; /* Enable scrolling */
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .container {
+            background: #ffffff;
+            color: #333;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .welcome-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        .description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            background: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+        }
+        .button:hover {
+            background: #2c3e50;
+            transform: scale(1.05);
+        }
+        .button:active {
+            transform: scale(1);
+        }
+        .button i {
+            margin-right: 10px;
+        }
+        .logout {
+            background: #e74c3c;
+            font-size: 1.2em;
+        }
+        .logout:hover {
+            background: #c0392b;
+        }
+        .icon {
+            font-size: 1.5em;
+        }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <div class="container">
+        <p class="welcome-message">Welcome to the Admin Dashboard</p>
+        <p class="description">Here you can manage all the tracks in the system. You can add new tracks, view all tracks, and manage existing tracks. Explore the features below to get started.</p>
+
+        <div class="button-container">
+            <a href="/tracks/add" th:href="@{/tracks/add}" class="button"><i class="fas fa-plus-circle icon"></i>Add Track</a>
+            <a href="/tracks/all" th:href="@{/tracks/all}" class="button"><i class="fas fa-list icon"></i>View Tracks</a>
+            <a href="/tracks/manage" th:href="@{/tracks/manage}" class="button"><i class="fas fa-cogs icon"></i>Manage Tracks</a>
+            
+            <!-- Placeholder for two additional buttons -->
+            <a href="/users/list" th:href="@{/users/list}" class="button" style="background: #f39c12;"><i class="fas fa-edit icon"></i>Manage Users</a>
+            </div>
+		<br>
+        <a href="/" th:href="@{/}" class="button logout"><i class="fas fa-sign-out-alt icon"></i>Logout</a>
+    </div>
+</body>
+</html>
