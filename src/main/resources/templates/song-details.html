@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            text-align: justify; /* Justify the text alignment */
+        }
+        p span {
+            font-weight: bold;
+            color: #ffdd57;
+        }
+        .details-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            padding-top:10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        audio {
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+         .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: purple;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+        .button-container a:hover {
+            background: #1e3c72;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Song List</h2>
+    <div class="details-container">
+        <h3 th:text="${song.name}"></h3>
+        <p>Artist: <span th:text="${song.artist}"></span></p>
+        <p>Album: <span th:text="${song.album}"></span></p>
+        <p>Release Date: <span th:text="${song.release}"></span></p>
+        <audio controls>
+            <source th:src="${song.audio}" type="audio/mpeg">
+            	Your browser does not support the audio element.
+        </audio>
+        <hr>
+    </div>
+  
+
+    <!-- Pagination Buttons -->
+    
+    <div class="button-container">
+            <a href="/" th:href="@{/}">Home</a> 
+            <a href="/song-list" th:href="@{/song-list}">All tracks</a> 
+    </div>        
+</body>
+</html>

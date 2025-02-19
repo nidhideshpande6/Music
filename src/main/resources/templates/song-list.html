@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 90%;
+            max-width: 750px;
+        }
+        li {
+            background: #ffffff;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        li span {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        li a {
+            text-decoration: none;
+            background: #2575fc;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        li a:hover {
+            background: #6a11cb;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button-container a {
+            text-decoration: none;
+            background: #ff5733;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+        .button-container a:hover {
+            background: #c70039;
+        }
+        .page a{
+            text-decoration: none;
+            background: #79fcfa;
+            color: black;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        .page a:hover {
+            background: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Tracks</h1>
+
+    <ul th:if="${songs != null and !songs.isEmpty()}">
+        <th:block th:each="song : ${songs}">
+            <li>
+                <div>
+                    <span th:text="${song.name}">Title</span> - 
+                    <span th:text="${song.artist}">Artist</span> - 
+                    <span th:text="${song.album}">Album</span>
+                </div>
+                <a th:href="@{/song/{id}(id=${song.id})}">View Details</a>
+            </li>
+        </th:block>
+    </ul>
+	<br>
+    <!-- Pagination Buttons -->
+    <div class="page">
+        <a th:if="${currentPage > 1}" th:href="@{/songs(page=${prevPage})}">Previous</a>
+        <a th:href="@{/song-list(page=${nextPage})}">Next</a>
+    </div>
+
+    <div class="button-container">
+        <a href="/" th:href="@{/}">Go to Home Page</a>  
+    </div>
+
+</body>
+</html>
